@@ -18,5 +18,8 @@
       },
       "package": "com.mikefristudio.frequencezero"
     }
+        "android": {
+      "permissions": ["VIBRATE"],
+      "adaptiveIcon": {
   }
 }

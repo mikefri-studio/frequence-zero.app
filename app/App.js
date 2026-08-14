@@ -4,10 +4,12 @@ import { useKeepAwake } from 'expo-keep-awake';
 import { StatusBar } from 'expo-status-bar';
 import { useState, useEffect, useRef } from 'react';
 import { prepareOfflineGame } from './offlineAssets';
+import { HAPTICS_INJECTED, onHaptics } from './haptics';
 
 const GAME_URL_ONLINE = 'https://mikefri-studio.github.io/frequence-zero/docs/index.html';
 
 export default function App() {
+  // 🔥 L'écran reste allumé pendant les appels
   useKeepAwake();
   const [loading, setLoading] = useState(true);
   const [source, setSource] = useState(null);
@@ -74,6 +76,8 @@ export default function App() {
           overScrollMode="never"
           pullToRefreshEnabled={false}
           setSupportMultipleWindows={false}
+          injectedJavaScript={HAPTICS_INJECTED}
+          onMessage={onHaptics}
           onNavigationStateChange={(nav) => setCanGoBack(nav.canGoBack)}
           onLoadEnd={() => setLoading(false)}
         />
